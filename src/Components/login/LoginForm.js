@@ -21,6 +21,7 @@ export const LoginForm = () => {
   const { showAlert, alertState, handleClose } = useAlert();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const onLogin = () => {
     const email = loginFormValues.email.value;
     const password = loginFormValues.password.value;
@@ -34,9 +35,17 @@ export const LoginForm = () => {
       .then(() => {
         navigate("/");
       })
-      .catch((err) => {
-        showAlert(err);
+      .catch((error) => {
+        showAlert("error", error);
+        console.log(error);
       });
+  };
+
+  const isButtonDisabled =
+    loginFormValues.email.error || loginFormValues.password.error;
+
+  const handleAlertClose = () => {
+    handleClose();
   };
 
   return (
@@ -56,10 +65,19 @@ export const LoginForm = () => {
         error={loginFormValues.password.error}
         type="password"
       />
-      <Button style={loginFormButtonStyle} onClick={onLogin}>
+      <Button
+        style={loginFormButtonStyle}
+        onClick={onLogin}
+        disabled={isButtonDisabled}
+      >
         Login
       </Button>
-      <Alert {...alertState} handleClose={handleClose} />
+      <Alert
+        open={alertState.open}
+        handleClose={handleAlertClose}
+        severity={alertState.severity}
+        message={alertState.message}
+      />
     </FormContainer>
   );
 };

@@ -7,6 +7,7 @@ import { fetchCart, fetchHomePageProducts } from "./redux";
 import { useDispatch } from "react-redux";
 import { useUser } from "./hooks";
 
+
 const App = () => {
   const dispatch = useDispatch();
   const { userInfo } = useUser();
@@ -26,6 +27,7 @@ const App = () => {
       <Grid item>
         <Header />
       </Grid>
+    
       <Grid
         item
         sx={{

@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
     ) {
       const refreshToken = localStorage.getItem("refreshToken");
       axios
-        .post("http://l/users/refresh", {
+        .post("https://l/users/refresh", {
           refresh_token: refreshToken,
         })
         .then(({ data }) => {

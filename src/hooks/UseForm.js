@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 export const UseForm = (defaultFormValues) => {
   const [formValues, setFormValues] = useState(defaultFormValues);
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const onFormChange = (event) => {
@@ -34,12 +33,14 @@ export const UseForm = (defaultFormValues) => {
         return true;
       }
     }
+    return false; // Return false if no errors found
   };
 
   return {
     formValues,
     onFormChange,
     clearForm,
+    checkButtonDisabled, // Corrected typo here
     isButtonDisabled,
     setFormValues,
   };
